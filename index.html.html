@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguadas - Ciudad de las Brumas | Pueblo Patrimonio de Colombia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-profundo: #1a4d2e;
+            --verde-medio: #2d6a4f;
+            --verde-claro: #52b788;
+            --amarillo-oro: #ffd60a;
+            --amarillo-suave: #fff3b0;
+            --crema: #fef9e7;
+            --negro: #0d1b2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            color: var(--negro);
+            background: var(--crema);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--verde-profundo) 0%, var(--verde-medio) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 214, 10, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(82, 183, 136, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--amarillo-oro);
+            color: var(--verde-profundo);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--amarillo-suave);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--verde-profundo);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--amarillo-oro);
+        }
+
+        /* Historia Section */
+        .historia {
+            background: white;
+            position: relative;
+        }
+
+        .historia-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .historia-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .historia-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--amarillo-suave) 0%, var(--amarillo-oro) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            color: var(--verde-profundo);
+        }
+
+        .historia-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .fecha-fundacion {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1;
+        }
+
+        /* Atractivos Grid */
+        .atractivos {
+            background: var(--crema);
+        }
+
+        .atractivos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .atractivo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .atractivo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 77, 46, 0.15);
+            border-color: var(--amarillo-oro);
+        }
+
+        .atractivo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--amarillo-oro), var(--amarillo-suave));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .atractivo-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--verde-profundo);
+            margin-bottom: 1rem;
+        }
+
+        .atractivo-card p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Patrimonio Section */
+        .patrimonio {
+            background: var(--verde-profundo);
+            color: white;
+            text-align: center;
+        }
+
+        .patrimonio .section-title {
+            color: white;
+        }
+
+        .patrimonio .section-title::after {
+            background: var(--amarillo-oro);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .patrimonio-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            border: 2px solid var(--amarillo-oro);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(255, 214, 10, 0.2);
+            transform: scale(1.05);
+        }
+
+        .badge-year {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--amarillo-oro);
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Tradiciones */
+        .tradiciones {
+            background: white;
+        }
+
+        .tradiciones-flex {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .tradicion {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .tradicion-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--verde-claro), var(--amarillo-oro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tradicion:hover .tradicion-img {
+            transform: rotate(360deg);
+        }
+
+        .tradicion h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--verde-profundo);
+            margin-bottom: 1rem;
+        }
+
+        .tradicion p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Festivales */
+        .festivales {
+            background: linear-gradient(135deg, var(--amarillo-suave) 0%, var(--amarillo-oro) 100%);
+        }
+
+        .festivales .section-title {
+            color: var(--verde-profundo);
+        }
+
+        .festivales-lista {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .festival-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .festival-item:hover {
+            transform: translateX(10px);
+        }
+
+        .festival-mes {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--verde-profundo);
+            min-width: 150px;
+        }
+
+        .festival-info h4 {
+            font-size: 1.5rem;
+            color: var(--verde-profundo);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Como Llegar */
+        .como-llegar {
+            background: white;
+        }
+
+        .rutas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ruta {
+            background: var(--crema);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--verde-medio);
+        }
+
+        .ruta h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--verde-profundo);
+            margin-bottom: 1rem;
+        }
+
+        .ruta p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 0.8rem;
+        }
+
+        .ruta strong {
+            color: var(--verde-profundo);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--verde-profundo);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--amarillo-oro);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--amarillo-oro);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .historia-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tradiciones-flex {
+                grid-template-columns: 1fr;
+            }
+
+            .rutas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .atractivos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Pueblo Patrimonio de Colombia</div>
+            <h1>AGUADAS</h1>
+            <p class="hero-subtitle">Ciudad de las Brumas</p>
+        </div>
+        <div class="hero-scroll">↓ Descubre más</div>
+    </section>
+
+    <!-- Historia -->
+    <section class="historia">
+        <h2 class="section-title">Historia & Origen</h2>
+        <div class="historia-content fade-in">
+            <div class="historia-text">
+                <p>Aguadas es un <span class="highlight">municipio colombiano</span> ubicado al norte del departamento de Caldas, en el corazón de Colombia. Fundado el <span class="highlight">5 de julio de 1808</span> por José Narciso Estrada, este pintoresco pueblo nació durante la época en que Colombia luchaba por su independencia de España.</p>
+                
+                <p>Antes de la llegada de los conquistadores, estas tierras eran habitadas por los indios <span class="highlight">Coucuyes</span>, también conocidos como "Armados" por los españoles debido a los atuendos que vestían. El mariscal Jorge Robledo fue uno de los primeros españoles en visitar estas tierras, y bajo órdenes de Sebastián de Belalcázar, se fundó Santiago de Arma en 1542.</p>
+                
+                <p>Su centro histórico fue declarado <span class="highlight">Monumento Nacional en 1982</span> y forma parte de la <span class="highlight">Red de Pueblos Patrimonio de Colombia</span> desde 2012. En 2011, fue incluido en el Paisaje Cultural Cafetero, reconocido como Patrimonio Mundial de la UNESCO.</p>
+            </div>
+            <div class="historia-visual fade-in">
+                <div class="fecha-fundacion">1808</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atractivos -->
+    <section class="atractivos">
+        <h2 class="section-title">Atractivos Turísticos</h2>
+        <div class="atractivos-grid">
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">🏛️</div>
+                <h3>Casa de la Cultura</h3>
+                <p>Centro cultural aguadeño y sede del Museo Nacional del Sombrero, único en Colombia con más de 300 sombreros artesanales de diferentes regiones.</p>
+            </div>
+
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">⛰️</div>
+                <h3>Plaza de Bolívar</h3>
+                <p>Hermoso parque principal adornado con una pila traída desde Nueva York a comienzos del siglo XX. Punto de encuentro del pueblo.</p>
+            </div>
+
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">🏞️</div>
+                <h3>Río Arma</h3>
+                <p>Playas naturales conocidas como "plan de oro", ideales para camping, pesca y los tradicionales paseos de olla.</p>
+            </div>
+
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">💧</div>
+                <h3>Cascadas de Pore</h3>
+                <p>Impresionante caída de agua de más de 80 metros dentro de una reserva natural que mezcla río y selva.</p>
+            </div>
+
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">🏘️</div>
+                <h3>Pueblito Viejo</h3>
+                <p>Pintoresca réplica de la zona urbana en su época de fundación, con capilla, alcaldía, escuela y la fonda de Manuela.</p>
+            </div>
+
+            <div class="atractivo-card fade-in">
+                <div class="atractivo-icon">🌄</div>
+                <h3>Alto de la Virgen</h3>
+                <p>Mirador desde el cual se puede apreciar una bella panorámica de Aguadas y sus alrededores envueltos en bruma.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patrimonio -->
+    <section class="patrimonio">
+        <h2 class="section-title">Reconocimientos Patrimoniales</h2>
+        <div class="patrimonio-badges">
+            <div class="badge fade-in">
+                <div class="badge-year">1982</div>
+                <div class="badge-title">Monumento Nacional</div>
+            </div>
+            <div class="badge fade-in">
+                <div class="badge-year">2011</div>
+                <div class="badge-title">Paisaje Cultural Cafetero UNESCO</div>
+            </div>
+            <div class="badge fade-in">
+                <div class="badge-year">2012</div>
+                <div class="badge-title">Pueblo Patrimonio de Colombia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tradiciones -->
+    <section class="tradiciones">
+        <h2 class="section-title">Tradiciones Vivas</h2>
+        <div class="tradiciones-flex">
+            <div class="tradicion fade-in">
+                <div class="tradicion-img">🎩</div>
+                <h3>Sombrero Aguadeño</h3>
+                <p>Elaborado con palma de iraca desde hace más de 160 años. Reconocido por su calidad a nivel nacional e internacional, cuenta con Denominación de Origen desde 2011.</p>
+            </div>
+            
+            <div class="tradicion fade-in">
+                <div class="tradicion-img">🎵</div>
+                <h3>Capital del Pasillo</h3>
+                <p>Aguadas es reconocida como la capital del pasillo colombiano, un ritmo andino tradicional. Sede del Festival Nacional del Pasillo, declarado Patrimonio Cultural de la Nación en 2005.</p>
+            </div>
+            
+            <div class="tradicion fade-in">
+                <div class="tradicion-img">🍰</div>
+                <h3>El Pionono</h3>
+                <p>Deliciosa golosina tradicional hecha a base de harina que envuelve brevas, arequipe, coco y bocadillo. Reconocida a nivel nacional por su sabor único y exquisito.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivales -->
+    <section class="festivales">
+        <h2 class="section-title">Calendario de Festividades</h2>
+        <div class="festivales-lista">
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Junio</div>
+                <div class="festival-info">
+                    <h4>Fiestas de San Antonio de Arma</h4>
+                </div>
+            </div>
+
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Julio</div>
+                <div class="festival-info">
+                    <h4>Fiesta Patronal de Nuestra Señora del Rosario de Chiquinquirá</h4>
+                </div>
+            </div>
+
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Agosto</div>
+                <div class="festival-info">
+                    <h4>Festival Nacional del Pasillo Colombiano</h4>
+                </div>
+            </div>
+
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Octubre</div>
+                <div class="festival-info">
+                    <h4>Encuentro Nacional de Escritores Aguadeños y Festival Equino</h4>
+                </div>
+            </div>
+
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Noviembre</div>
+                <div class="festival-info">
+                    <h4>Fiestas de la Iraca y Encuentro Nacional de Danzas</h4>
+                </div>
+            </div>
+
+            <div class="festival-item fade-in">
+                <div class="festival-mes">Diciembre</div>
+                <div class="festival-info">
+                    <h4>Fiestas Patronales de la Inmaculada Concepción</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Llegar -->
+    <section class="como-llegar">
+        <h2 class="section-title">¿Cómo Llegar?</h2>
+        <div class="rutas-grid">
+            <div class="ruta fade-in">
+                <h4>Desde Manizales</h4>
+                <p><strong>Distancia:</strong> 126 km al norte</p>
+                <p><strong>Tiempo:</strong> Aproximadamente 3.5 horas</p>
+                <p><strong>Ruta:</strong> Neira - Aranzazu - Salamina - Pácora - Aguadas</p>
+                <p><strong>Transporte:</strong> Expreso Sideral, Auto Legal o Empresa Arauca</p>
+                <p><strong>Costo:</strong> Aproximadamente $29,000 COP</p>
+            </div>
+
+            <div class="ruta fade-in">
+                <h4>Desde Medellín</h4>
+                <p><strong>Tiempo:</strong> Aproximadamente 5 horas</p>
+                <p><strong>Rutas:</strong> Vía Abejorral o Sonsón</p>
+                <p><strong>Transporte:</strong> Terminal del Sur, buses diarios</p>
+                <p><strong>Horarios:</strong> 5:00 am, 11:00 am y 2:20 pm</p>
+                <p><strong>Costo:</strong> Aproximadamente $30,000 COP</p>
+            </div>
+
+            <div class="ruta fade-in">
+                <h4>Aeropuertos Cercanos</h4>
+                <p><strong>La Nubia:</strong> Manizales</p>
+                <p><strong>José María Córdova:</strong> Rionegro</p>
+                <p><strong>Olaya Herrera:</strong> Medellín</p>
+                <p><strong>Matecaña:</strong> Pereira</p>
+                <p><strong>Recomendación:</strong> Vehículo 4x4 por vías sin pavimentar</p>
+            </div>
+
+            <div class="ruta fade-in">
+                <h4>Clima & Mejor Época</h4>
+                <p><strong>Clima:</strong> Templado</p>
+                <p><strong>Rango:</strong> Cálido a páramo</p>
+                <p><strong>Característica:</strong> Permanente neblina (brumas)</p>
+                <p><strong>Mejor época:</strong> Todo el año, especialmente durante festivales</p>
+                <p><strong>Altitud:</strong> Variada según vereda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">AGUADAS</div>
+            <p class="footer-text">Ciudad de las Brumas · Pueblo Patrimonio de Colombia</p>
+            <div class="footer-links">
+                <a href="#historia">Historia</a>
+                <a href="#atractivos">Atractivos</a>
+                <a href="#tradiciones">Tradiciones</a>
+                <a href="#festivales">Festivales</a>
+                <a href="#como-llegar">Cómo Llegar</a>
+            </div>
+            <p class="copyright">
+                © 2026 Aguadas, Caldas. Parte de la Red de Pueblos Patrimonio de Colombia.<br>
+                "Nació con la Patria" - Lema del escudo de Aguadas
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
