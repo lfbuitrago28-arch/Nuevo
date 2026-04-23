@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguadas - Portal Interactivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-profundo: #1a4d2e;
+            --verde-bosque: #2d6a4f;
+            --verde-esmeralda: #40916c;
+            --amarillo-sol: #ffd60a;
+            --amarillo-suave: #ffc300;
+            --crema: #fffef7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--verde-profundo) 0%, var(--verde-bosque) 50%, var(--verde-esmeralda) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--amarillo-sol);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: var(--amarillo-suave);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: var(--crema);
+            top: 50%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Logo/Title */
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            color: var(--crema);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--amarillo-sol);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Buttons Grid */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .icon-button {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--amarillo-sol);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out both;
+        }
+
+        .icon-button:nth-child(1) { animation-delay: 0.5s; }
+        .icon-button:nth-child(2) { animation-delay: 0.6s; }
+        .icon-button:nth-child(3) { animation-delay: 0.7s; }
+        .icon-button:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .icon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--amarillo-sol) 0%, var(--amarillo-suave) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .icon-button:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--crema);
+            box-shadow: 0 20px 60px rgba(255, 214, 10, 0.4);
+        }
+
+        .icon-button:hover::before {
+            opacity: 1;
+        }
+
+        .icon-button:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Icon */
+        .button-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .icon-button:hover .button-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Label */
+        .button-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--crema);
+            letter-spacing: 0.1em;
+            transition: color 0.4s ease;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon-button:hover .button-label {
+            color: var(--verde-profundo);
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--crema);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .buttons-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
+            }
+
+            .icon-button {
+                min-height: 180px;
+                padding: 2rem 1.5rem;
+            }
+
+            .button-icon {
+                font-size: 4rem;
+            }
+
+            .button-label {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+
+            .subtitle {
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* Hover glow effect */
+        .icon-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .icon-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Ripple effect on click */
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+
+    <div class="container">
+        <h1 class="logo">AGUADAS</h1>
+        <p class="subtitle">Ciudad de las Brumas</p>
+
+        <div class="buttons-grid">
+            <a href="https://es.wikipedia.org/wiki/Aguadas" class="icon-button" target="_blank" rel="noopener">
+                <div class="button-icon">🎩</div>
+                <div class="button-label">SOMBRERO</div>
+            </a>
+
+            <a href="https://es.wikipedia.org/wiki/Aguadas" class="icon-button" target="_blank" rel="noopener">
+                <div class="button-icon">☂️</div>
+                <div class="button-label">SOMBRILLA</div>
+            </a>
+
+            <a href="https://es.wikipedia.org/wiki/Aguadas" class="icon-button" target="_blank" rel="noopener">
+                <div class="button-icon">💻</div>
+                <div class="button-label">PC</div>
+            </a>
+
+            <a href="https://es.wikipedia.org/wiki/Aguadas" class="icon-button" target="_blank" rel="noopener">
+                <div class="button-icon">🌿</div>
+                <div class="button-label">CAFÉ</div>
+            </a>
+        </div>
+
+        <div class="footer">
+            PUEBLO PATRIMONIO DE COLOMBIA
+        </div>
+    </div>
+
+    <script>
+        // Add ripple effect on click
+        document.querySelectorAll('.icon-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+
+            // Add sound feedback (optional - commented out)
+            /*
+            button.addEventListener('mouseenter', () => {
+                // You can add sound here if desired
+            });
+            */
+        });
+
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const circles = document.querySelectorAll('.bg-circle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            circles.forEach((circle, index) => {
+                const speed = (index + 1) * 20;
+                const xMove = (x - 0.5) * speed;
+                const yMove = (y - 0.5) * speed;
+                circle.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
